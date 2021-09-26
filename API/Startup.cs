@@ -9,7 +9,6 @@ using Application.Activities;
 using API.Middleware;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using API.SignalR;
 
 namespace API
 {
@@ -55,9 +54,6 @@ namespace API
 
             app.UseRouting();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
@@ -67,9 +63,6 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chat");
-                endpoints.MapFallbackToController("Index", "Fallback");
-
             });
         }
     }
